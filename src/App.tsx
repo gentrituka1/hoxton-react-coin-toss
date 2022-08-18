@@ -6,21 +6,15 @@ function App() {
   const [side, setSide] = useState(1)
   const [heads, setHeads] = useState(0)
   const [tails, setTails] = useState(0)
-  const [isPaused,]
 
   let tossed = heads + tails
   
   function tossCoin(){
-    let landedOn = Math.floor(Math.random())
-    if(landedOn === 1)  setHeads(landedOn)
-    else  setTails(tails + 1)
+    let landedOn = Math.floor(Math.random() * 2)
+    if(landedOn === 1)  setHeads(heads + 1)
+    else if (landedOn === 0)  setTails(tails + 1)
     setSide(landedOn)
   }
-
-  useEffect(() => {
-    const interval = setInterval(tossCoin, 1000)
-    return () => clearInterval(interval)
-  }, [])
 
   return (
     <div className="App">
@@ -29,11 +23,17 @@ function App() {
         <p>It landed on {side === 1 ? "heads" : "tails"}</p>
 
         <ul>
-          <li>Heads: {heads}</li>
-          <li>Tails: {tails}</li>
+          <li>
+            <label htmlFor="heads">Heads: {heads}</label>
+            <meter id="heads" value={heads} max={tossed} />
+          </li>
+          <li>
+            <label htmlFor='tails'>Tails: {tails}</label>
+            <meter id="tails" value={tails} max={tossed} />
+          </li>
         </ul>
 
-        <button onClick={tossCoin}>Toss coin</button>
+        <button onClick={tossCoin}>Toss Coin</button>
       </div>
     </div>
   )
