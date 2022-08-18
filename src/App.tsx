@@ -22,7 +22,7 @@ function App() {
         <p>The coin has been tossed {tossed} times.</p>
         <p>It landed on {side === 1 ? "heads" : "tails"}</p>
 
-        <ul>
+        <ul className="coin-list">
           <li>
             <label htmlFor="heads">Heads: {heads}</label>
             <meter id="heads" value={heads} max={tossed} />
